@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 import joblib
 
 df = pd.read_csv('parkinsons.csv')
-df.head()
+
 
 df.columns
 selected_features = ["D2", "PPE"]
