@@ -16,9 +16,9 @@ y = df["status"]
 scaler = MinMaxScaler()
 x = scaler.fit_transform(x)
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=100)
 
-model = KNeighborsClassifier(n_neighbors=4)
+model = KNeighborsClassifier(n_neighbors=51)
 model.fit(x_train, y_train)
 
 y_pred = model.predict(x_test)
