@@ -5,7 +5,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 import joblib
 
-df = pd.read_csv('parkinsons.csv')
+df=pd.read_csv("/content/parkinsons.csv")
 
 
 df.columns
