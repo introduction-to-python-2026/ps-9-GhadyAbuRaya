@@ -1,28 +1,28 @@
 import pandas as pd
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
-import joblib
-
 df=pd.read_csv("/content/parkinsons.csv")
+print(list(df.columns))
+selected_feature=["D2","PPE"]
+x=df[selected_feature]
+y=df["status"]
 
-
-df.columns
-selected_features = ["D2", "PPE"]
-x = df[selected_features]
-y = df["status"]
+from sklearn.preprocessing import MinMaxScaler
 
 scaler = MinMaxScaler()
 x = scaler.fit_transform(x)
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=100)
+from sklearn.model_selection import train_test_split
 
-model = KNeighborsClassifier(n_neighbors=51)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=100)
+from sklearn.neighbors import KNeighborsClassifier
+
+model = KNeighborsClassifier(n_neighbors=6)
 model.fit(x_train, y_train)
+
+from sklearn.metrics import accuracy_score
 
 y_pred = model.predict(x_test)
 accuracy = accuracy_score(y_test, y_pred)
 print(f'Accuracy: {accuracy}')
+import joblib
 
 joblib.dump(model, 'my_model.joblib')
